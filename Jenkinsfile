@@ -12,11 +12,14 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo "========== start building image =========="
-                dir ('./') { // Это тоже самое, что и не указывать директорию вообще
-                    sh 'docker build .'
+                script {
+                    def dockerImage = 'myapp:latest' // Измените на актуальное название вашего образа и тег
+                    sh "docker build -t ${dockerImage} ."
+                    sh "docker run -d -p 5000:5000 --name myapp_container ${dockerImage}"
                 }
             }
         }
     }
 }
+
 
