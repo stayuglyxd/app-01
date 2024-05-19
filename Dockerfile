@@ -1,13 +1,13 @@
-FROM python:3.8-slim
+Dockerfile
+# Используйте официальный образ Nginx как базовый
+FROM nginx:latest
 
-# Установка зависимостей
-COPY requirements.txt /app/requirements.txt
-WORKDIR /app
-RUN pip install -r requirements.txt
+# Копируйте файлы конфигурации или статические файлы при необходимости
+# COPY ./default.conf /etc/nginx/conf.d/default.conf
+# COPY static-html-directory /usr/share/nginx/html
 
-# Копирование исходного кода приложения
-COPY . /app
+# Порт, который будет открыт контейнером
+EXPOSE 80
 
-# Запуск приложения
-EXPOSE 5000
-CMD ["python", "app.py"]
+# Запуск Nginx в фоновом режиме
+CMD ["nginx", "-g", "daemon off;"]
