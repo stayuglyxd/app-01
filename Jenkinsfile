@@ -1,7 +1,7 @@
 pipeline {
     environment {
         // Задайте имя образа
-        DOCKER_IMAGE_NAME = 'my-nginx-image'
+        DOCKER_IMAGE_NAME = 'nginx'
         // Задайте тег для образа
         DOCKER_IMAGE_TAG = 'latest'
     }
