@@ -3,9 +3,7 @@
 properties([disableConcurrentBuilds()])
 
 pipeline {
-    agent {
-        label any
-    }
+    agent any
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
@@ -14,7 +12,7 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo "========== start building image =========="
-                dir ('./') {
+                dir ('./') { // Это тоже самое, что и не указывать директорию вообще
                     sh 'docker build .'
                 }
             }
